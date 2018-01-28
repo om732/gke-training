@@ -1,8 +1,8 @@
 FROM golang:1.8-alpine AS go-build
-ADD . /go/src/golang-echo
+RUN apk add --no-cache git make
 WORKDIR /go/src/golang-echo
-RUN apk add --no-cache git make && \
-    make init && \
+ADD ./server /go/src/golang-echo
+RUN make init && \
     make build-linux
 
 FROM alpine:latest
