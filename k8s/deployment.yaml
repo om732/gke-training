@@ -1,0 +1,25 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: golang-echo
+  labels:
+    role: app
+spec:
+  replicas: 3 # 起動するコンテナ数
+  selector:
+    matchLabels:
+      role: app
+  template:
+    metadata:
+      labels:
+        role: app
+    spec:
+      containers:
+      - name: golang-echo
+        image: gcr.io/PROJECT_ID/golang-echo:v0.0.3 # コンテナのURL。PROJECT_IDは適宜設定
+        resources:
+          requests:
+            cpu: 100m # CPUを0.1コア確保
+            memory: 64Mi # メモリ100MiB確保
+        ports:
+        - containerPort: 1323 # コンテナポートの指定
