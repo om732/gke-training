@@ -1,2 +1,2 @@
-server/vendor/*
-server/build/*
+app/vendor/*
+app/build/*

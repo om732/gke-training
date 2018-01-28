@@ -1,5 +1,5 @@
 .PHONY: init run clean build-linux build-mac
-BINARY_NAME=server
+BINARY_NAME=app
 
 define BUILD_COMMON
 	@if [ -d "build" ]; then \
