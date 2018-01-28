@@ -4,6 +4,7 @@ import (
 	"html/template"
 	"io"
 	"net/http"
+	"os"
 
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
@@ -28,7 +29,11 @@ func main() {
 	e.Renderer = renderer
 
 	e.GET("/", func(c echo.Context) error {
-		return c.Render(http.StatusOK, "top.html", map[string]interface{}{})
+		hostname, err := os.Hostname()
+		if err != nil {
+			hostname = "unknown"
+		}
+		return c.Render(http.StatusOK, "top.html", map[string]interface{}{"hostname": hostname})
 	})
 
 	e.Logger.Fatal(e.Start(":1323"))
