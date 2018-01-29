@@ -1,7 +1,7 @@
 apiVersion: apps/v1beta2
 kind: Deployment
 metadata:
-  name: golang-echo
+  name: gke-training
   labels:
     role: app
 spec:
@@ -15,8 +15,8 @@ spec:
         role: app
     spec:
       containers:
-      - name: golang-echo
-        image: gcr.io/PROJECT_ID/golang-echo:v0.0.3 # コンテナのURL。PROJECT_IDは適宜設定
+      - name: gke-training
+        image: gcr.io/${PROJECT_ID}/gke-training:v${APP_VERSION} # コンテナのURL
         resources:
           requests:
             cpu: 100m # CPUを0.1コア確保
